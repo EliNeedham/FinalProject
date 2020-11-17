@@ -151,4 +151,7 @@ namespace FinalProject.DATA.EF//.Metadata
         [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public System.DateTime DateAdded { get; set; }
     }
+
+    [MetadataType(typeof(HomesMetadata))]
+    public partial class Homes { }
 }

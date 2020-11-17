@@ -1,0 +1,56 @@
+﻿@model FinalProject.DATA.EF.Reservations
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Reservations</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ReservationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReservationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Homes.HomeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Homes.HomeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Locations.LocationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Locations.LocationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Services.ServiceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Services.ServiceType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
