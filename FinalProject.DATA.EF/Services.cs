@@ -23,6 +23,7 @@ namespace FinalProject.DATA.EF
         public int ServiceId { get; set; }
         public string ServiceType { get; set; }
         public decimal Price { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservations> Reservations { get; set; }

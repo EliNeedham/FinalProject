@@ -111,6 +111,7 @@
           <Property Name="ServiceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceType" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="300" Nullable="false" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -386,6 +387,7 @@
           <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Services" FromRole="Services" ToRole="Reservations" />
         </EntityType>
         <EntityType Name="UserDetails">
@@ -627,6 +629,7 @@
                 <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
                 <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
