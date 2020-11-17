@@ -64,6 +64,21 @@ namespace FinalProject.MVC.UI.Models
 
     public class RegisterViewModel
     {
+        [Required(ErrorMessage =" *First name is required")]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = " *Last name is required")]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Company Name")]
+        public string CompanyName { get; set; }
+
+        //TODO image upload utility
+        //[Display(Name = "Profile Picture")]
+        //public string UserPhoto { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

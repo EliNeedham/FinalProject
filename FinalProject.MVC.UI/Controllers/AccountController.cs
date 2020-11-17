@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using FinalProject.DATA.EF;
 
 namespace FinalProject.MVC.UI.Controllers
 {
@@ -153,11 +154,20 @@ namespace FinalProject.MVC.UI.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    #region assign UserDetails during registration
+                    UserDetails newUserDeets = new UserDetails();
+                    newUserDeets.UserId = user.Id; //pulling id from aspnetusers tables
+                    newUserDeets.FirstName = model.FirstName; //model bc model is what is being pass in above in registermodelview
+                    newUserDeets.LastName = model.LastName;
+                    newUserDeets.CompanyName = model.CompanyName;
+
+                    //now save info to the database
+                    FinalProjectEntities db = new FinalProjectEntities();
+                    db.UserDetails.Add(newUserDeets);
+                    db.SaveChanges();
+                    #endregion
+
+                    return View("Login");
                 }
                 AddErrors(result);
             }

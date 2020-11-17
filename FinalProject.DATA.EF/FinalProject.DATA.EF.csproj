@@ -46,6 +46,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,11 +56,79 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRoles.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaims.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogins.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUsers.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinalProjectModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalProjectModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinalProjectModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FinalProjectModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalProjectModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Homes.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Locations.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Metadata\FinalProjectMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reservations.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDetails.cs">
+      <DependentUpon>FinalProjectModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="FinalProjectModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FinalProjectModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FinalProjectModel.edmx.diagram">
+      <DependentUpon>FinalProjectModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FinalProjectModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FinalProjectModel.edmx</DependentUpon>
+      <LastGenOutput>FinalProjectModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="FinalProjectModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FinalProjectModel.edmx</DependentUpon>
+      <LastGenOutput>FinalProjectModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
