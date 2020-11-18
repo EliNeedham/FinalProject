@@ -1,10 +1,21 @@
 ﻿@model FinalProject.DATA.EF.Homes
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Homes | Details";
 }
 
-<h2>Details</h2>
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>@ViewBag.Title</h2>
+            <ol>
+                <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started" })</li>
+            </ol>
+        </div>
+    </div>
+</section><!-- End Breadcrumbs -->
 
 <div>
     <h4>Homes</h4>
@@ -55,7 +66,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HomePhoto)
+            <img src="~/Content/assets/img/Uploads/@Model.HomePhoto" alt="Home Photo" title="@Model.HomeName" />
         </dd>
 
         <dt>

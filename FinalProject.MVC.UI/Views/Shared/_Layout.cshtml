@@ -43,9 +43,9 @@
                     <li class="drop-down">
                         <a href="@Url.Action("About", "Home")">About</a>
                         <ul>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="team.html">Team</a></li>
-                            <li><a href="testimonials.html">Testimonials</a></li>
+                            <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+                            <li><a href="@Url.Action("Index", "Services")">Services</a></li>
+                            <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
                             <!--I don't think I will use this deep drop down 11/17-->
                             @*<li class="drop-down">
                                     <a href="#">Deep Drop Down</a>
@@ -61,7 +61,7 @@
                     </li>
 
                     <li><a href="@Url.Action("Index", "Services")">Services</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="@Url.Action("Index", "")>Pricing</a></li>
                     <li><a href="contact.html">Contact</a></li>
 
                 </ul>
