@@ -205,6 +205,7 @@
     <Content Include="Content\assets\img\blog-recent-posts-5.jpg" />
     <Content Include="Content\assets\img\bubbles.jpg" />
     <Content Include="Content\assets\img\bubblesCrop.jpg" />
+    <Content Include="Content\assets\img\BublbleStuff.jpg" />
     <Content Include="Content\assets\img\clients\client-1.png" />
     <Content Include="Content\assets\img\clients\client-2.png" />
     <Content Include="Content\assets\img\clients\client-3.png" />
@@ -213,6 +214,7 @@
     <Content Include="Content\assets\img\clients\client-6.png" />
     <Content Include="Content\assets\img\clients\client-7.png" />
     <Content Include="Content\assets\img\clients\client-8.png" />
+    <Content Include="Content\assets\img\ClothesPins.jpg" />
     <Content Include="Content\assets\img\comments-1.jpg" />
     <Content Include="Content\assets\img\comments-2.jpg" />
     <Content Include="Content\assets\img\comments-3.jpg" />
@@ -220,6 +222,10 @@
     <Content Include="Content\assets\img\comments-5.jpg" />
     <Content Include="Content\assets\img\comments-6.jpg" />
     <Content Include="Content\assets\img\favicon.png" />
+    <Content Include="Content\assets\img\LemonSlice.jpg" />
+    <Content Include="Content\assets\img\LemonWash.jpg" />
+    <Content Include="Content\assets\img\mops.jpg" />
+    <Content Include="Content\assets\img\NeonGlove.jpg" />
     <Content Include="Content\assets\img\Uploads\noimage.png" />
     <Content Include="Content\assets\img\portfolio\portfolio-1.jpg" />
     <Content Include="Content\assets\img\portfolio\portfolio-2.jpg" />
@@ -246,6 +252,7 @@
     <Content Include="Content\assets\img\testimonials\testimonials-4.jpg" />
     <Content Include="Content\assets\img\testimonials\testimonials-5.jpg" />
     <Content Include="Content\assets\img\testimonials\testimonials-6.jpg" />
+    <Content Include="Content\assets\img\Va.jpg" />
     <Content Include="Content\assets\js\main.js" />
     <Content Include="Content\assets\vendor\animate.css\animate.compat.css" />
     <Content Include="Content\assets\vendor\animate.css\animate.css" />
