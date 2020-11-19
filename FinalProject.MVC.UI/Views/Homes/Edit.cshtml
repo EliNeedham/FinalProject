@@ -1,16 +1,28 @@
 ﻿@model FinalProject.DATA.EF.Homes
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Homes | Edit";
 }
 
-<h2>Edit</h2>
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>@ViewBag.Title</h2>
+            <ol>
+                <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started" })</li>
+            </ol>
+        </div>
+    </div>
+</section><!-- End Breadcrumbs -->
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Homes", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Homes</h4>
         <hr />
@@ -58,7 +70,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OwnderId, "OwnderId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.OwnderId, "Owner Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("OwnderId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.OwnderId, "", new { @class = "text-danger" })
@@ -68,7 +80,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HomePhoto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HomePhoto, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="file" name="homePhoto" />
                 @Html.ValidationMessageFor(model => model.HomePhoto, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -107,9 +119,6 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

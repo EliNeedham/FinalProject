@@ -576,7 +576,8 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 15px 0;
-  background: #1bbd36;
+  background-image: url(/Content/assets/img/bubblesCrop.jpg);
+  background-size: cover; 
   min-height: 40px;
   margin-top: 72px;
 }

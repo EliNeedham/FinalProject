@@ -203,6 +203,8 @@
     <Content Include="Content\assets\img\blog-recent-posts-3.jpg" />
     <Content Include="Content\assets\img\blog-recent-posts-4.jpg" />
     <Content Include="Content\assets\img\blog-recent-posts-5.jpg" />
+    <Content Include="Content\assets\img\bubbles.jpg" />
+    <Content Include="Content\assets\img\bubblesCrop.jpg" />
     <Content Include="Content\assets\img\clients\client-1.png" />
     <Content Include="Content\assets\img\clients\client-2.png" />
     <Content Include="Content\assets\img\clients\client-3.png" />

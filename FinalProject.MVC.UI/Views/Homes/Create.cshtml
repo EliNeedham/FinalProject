@@ -18,7 +18,7 @@
 </section><!-- End Breadcrumbs -->
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Homes", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -65,7 +65,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.OwnderId, "Ownder Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.OwnderId, "Owner Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("OwnderId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.OwnderId, "", new { @class = "text-danger" })

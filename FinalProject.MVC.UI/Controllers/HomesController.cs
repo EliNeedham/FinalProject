@@ -10,6 +10,7 @@ using FinalProject.DATA.EF;
 using FinalProject.MVC.UI.Utilities;
 using FinalProject.MVC.UI.Models;
 using System.Drawing;
+using Microsoft.AspNet.Identity;
 
 namespace FinalProject.MVC.UI.Controllers
 {
@@ -42,7 +43,8 @@ namespace FinalProject.MVC.UI.Controllers
         // GET: Homes/Create
         public ActionResult Create()
         {
-            ViewBag.OwnderId = new SelectList(db.UserDetails, "UserId", "CompanyName");
+            string currentUserID = User.Identity.GetUserId();
+            ViewBag.OwnderId = new SelectList(db.UserDetails.Where(x => x.UserId == currentUserID), "UserId", "FullName");
             return View();
         }
 
@@ -117,7 +119,8 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OwnderId = new SelectList(db.UserDetails, "UserId", "CompanyName", homes.OwnderId);
+            string currentUserID = User.Identity.GetUserId();
+            ViewBag.OwnderId = new SelectList(db.UserDetails.Where(x => x.UserId == currentUserID), "UserId", "CompanyName");
             return View(homes);
         }
 
@@ -126,10 +129,54 @@ namespace FinalProject.MVC.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HomeId,HomeName,Address,City,State,ZipCode,OwnderId,HomePhoto,SpecialNotes,IsActive,DateAdded")] Homes homes)
+        public ActionResult Edit([Bind(Include = "HomeId,HomeName,Address,City,State,ZipCode,OwnderId,HomePhoto,SpecialNotes,IsActive,DateAdded")] Homes homes, HttpPostedFileBase homePhoto)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string file = "noimage.png"; //for this to work in our image files there is a NoImage.png file
+
+                if (homePhoto != null)
+                {
+                    file = homePhoto.FileName;
+                    //we need to make sure they are actually uploading an appropriate file type
+                    string ext = file.Substring(file.LastIndexOf('.'));
+                    string[] goodExts = { ".jpeg", ".jpg", ".png", ".gif" };
+                    //check that the uploaded file is in our list of good file extensions
+                    if (goodExts.Contains(ext))
+                    {
+                        //if valid ext, check file size <= 4mb (max by default from ASP.net)
+                        if (homePhoto.ContentLength <= 4194304) // specifying in bytes how big file can be
+                        {
+                            //create a new file name using a guid - a lot of users probably have images with the same names so we change it from what the user had to a guid Globally Unique Identifier
+                            file = Guid.NewGuid() + ext;
+
+                            #region Resize Image
+                            string savePath = Server.MapPath("~/Content/assets/img/Uploads/");
+
+                            //taking the contents of this file and creatign a stream of bytes, http file base type is becmonig a stream of bytes into a type of image. this conversion has to take place for us to be able to resize the image
+                            Image convertedImage = Image.FromStream(homePhoto.InputStream);
+
+                            int maxImageSize = 500;
+
+                            int maxThumbSize = 100;
+                            //if you allowed image uploads for magazine and books - you would need to repeat that code - that's why the image service code is in an imageservice area
+
+                            UploadUtility.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
+                            //saves image onto server - but doesn't update db need to make sure to update what is stored in the db
+                            #endregion
+                            if (homes.HomePhoto != null && homes.HomePhoto != "noimage.png")
+                            {
+                                string path = Server.MapPath("~/Content/imgstore/books/");
+                                UploadUtility.Delete(path, homes.HomePhoto);
+                            }
+                        }
+                    }
+
+                    homes.HomePhoto = file;
+                }
+
+                #endregion
                 db.Entry(homes).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
