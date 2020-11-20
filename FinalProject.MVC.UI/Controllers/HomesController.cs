@@ -21,13 +21,24 @@ namespace FinalProject.MVC.UI.Controllers
         // GET: Homes
         public ActionResult Index()
         {
-            var homes = db.Homes.Include(h => h.UserDetails);
-            return View(homes.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+            {
+                var homes = db.Homes.Include(h => h.UserDetails);
+                return View(homes.ToList());
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                var homes = db.Homes.Where(x => x.OwnderId == currentUserID).Include(h => h.UserDetails);
+                return View(homes.ToList());
+            }
+
         }
 
         // GET: Homes/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -146,7 +157,7 @@ namespace FinalProject.MVC.UI.Controllers
                     if (goodExts.Contains(ext))
                     {
                         //if valid ext, check file size <= 4mb (max by default from ASP.net)
-                        if (homePhoto.ContentLength <= 4194304) // specifying in bytes how big file can be
+                        if (homePhoto.ContentLength <= 52428800) // specifying in bytes how big file can be
                         {
                             //create a new file name using a guid - a lot of users probably have images with the same names so we change it from what the user had to a guid Globally Unique Identifier
                             file = Guid.NewGuid() + ext;

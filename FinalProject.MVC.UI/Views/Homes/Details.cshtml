@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>@ViewBag.Title</h2>
             <ol>
-                <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started" })</li>
+                <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started btn-background" })</li>
             </ol>
         </div>
     </div>
@@ -104,6 +104,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.HomeId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HomeId }, new { @class = "btn-get-started btn-background" })
 </p>

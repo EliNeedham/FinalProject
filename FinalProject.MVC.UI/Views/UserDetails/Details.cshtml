@@ -1,14 +1,23 @@
 ﻿@model FinalProject.DATA.EF.UserDetails
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "User Details";
 }
 
-<h2>Details</h2>
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>@ViewBag.Title</h2>
+            <ol>
+                <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started btn-background" })</li>
+            </ol>
+        </div>
+    </div>
+</section><!-- End Breadcrumbs -->
 
 <div>
-    <h4>UserDetails</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.CompanyName)
@@ -45,6 +54,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }, new { @class = "btn-get-started btn-background" })
 </p>

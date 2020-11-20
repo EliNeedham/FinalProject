@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FinalProject.DATA.EF;
+using Microsoft.AspNet.Identity;
 
 namespace FinalProject.MVC.UI.Controllers
 {
@@ -39,7 +40,8 @@ namespace FinalProject.MVC.UI.Controllers
         // GET: Reservations/Create
         public ActionResult Create()
         {
-            ViewBag.HomeId = new SelectList(db.Homes, "HomeId", "HomeName");
+            string currentUserID = User.Identity.GetUserId();
+            ViewBag.HomeId = new SelectList(db.Homes.Where(x => x.OwnderId == currentUserID), "HomeId", "HomeName");
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
             ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType");
             return View();
@@ -52,8 +54,20 @@ namespace FinalProject.MVC.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ReservationId,HomeId,LocationId,ReservationDate,ServiceId")] Reservations reservations)
         {
+
             if (ModelState.IsValid)
             {
+                //logic to figure out the location - pull it from the database to find its limit
+                //TODO figure out how to do this logic.....
+                //int location = reservations.LocationId;
+                //int home = reservations.HomeId;
+                //DateTime date = reservations.ReservationDate;
+                //int currentResos = db.Locations.Where(location => )
+
+                //if ()
+                //{
+
+                //}
                 db.Reservations.Add(reservations);
                 db.SaveChanges();
                 return RedirectToAction("Index");

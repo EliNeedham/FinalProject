@@ -574,18 +574,22 @@ section {
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
+.btn-background {
+    background-color: #55447e;
+}
+
 .breadcrumbs {
-  padding: 15px 0;
-  background-image: url(/Content/assets/img/bubblesCrop.jpg);
-  background-size: cover; 
-  min-height: 40px;
-  margin-top: 72px;
+    /*padding: 15px 0;*/
+    background-image: url(/Content/assets/img/LemonSliceCrop.jpg);
+    background-size: cover;
+    min-height: 40px;
+    margin-top: 72px;
 }
 
 .breadcrumbs h2 {
   font-size: 26px;
-  font-weight: 300;
-  color: #fff;
+  font-weight: 400;
+  color: #65417f;
 }
 
 .breadcrumbs ol {

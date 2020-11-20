@@ -46,7 +46,7 @@ namespace FinalProject.MVC.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ServiceId,ServiceType,Price")] Services services)
+        public ActionResult Create([Bind(Include = "ServiceId,ServiceType,Price,Description")] Services services)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace FinalProject.MVC.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ServiceId,ServiceType,Price")] Services services)
+        public ActionResult Edit([Bind(Include = "ServiceId,ServiceType,Price,Description")] Services services)
         {
             if (ModelState.IsValid)
             {

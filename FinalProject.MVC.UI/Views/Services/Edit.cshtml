@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>@ViewBag.Title</h2>
             <ol>
-                <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started" })</li>
+                <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started btn-background" })</li>
             </ol>
         </div>
     </div>
@@ -59,9 +59,6 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

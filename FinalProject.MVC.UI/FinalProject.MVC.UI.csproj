@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -222,10 +223,16 @@
     <Content Include="Content\assets\img\comments-5.jpg" />
     <Content Include="Content\assets\img\comments-6.jpg" />
     <Content Include="Content\assets\img\favicon.png" />
+    <Content Include="Content\assets\img\LemonS.png" />
     <Content Include="Content\assets\img\LemonSlice.jpg" />
+    <Content Include="Content\assets\img\LemonWash-1x-web.png" />
     <Content Include="Content\assets\img\LemonWash.jpg" />
+    <Content Include="Content\assets\img\logo.png" />
     <Content Include="Content\assets\img\mops.jpg" />
     <Content Include="Content\assets\img\NeonGlove.jpg" />
+    <Content Include="Content\assets\img\OrangeBubble.jpg" />
+    <Content Include="Content\assets\img\LemonSliceCrop.jpg" />
+    <Content Include="Content\assets\img\OrangeBubbles.png" />
     <Content Include="Content\assets\img\Uploads\noimage.png" />
     <Content Include="Content\assets\img\portfolio\portfolio-1.jpg" />
     <Content Include="Content\assets\img\portfolio\portfolio-2.jpg" />
@@ -252,7 +259,6 @@
     <Content Include="Content\assets\img\testimonials\testimonials-4.jpg" />
     <Content Include="Content\assets\img\testimonials\testimonials-5.jpg" />
     <Content Include="Content\assets\img\testimonials\testimonials-6.jpg" />
-    <Content Include="Content\assets\img\Va.jpg" />
     <Content Include="Content\assets\js\main.js" />
     <Content Include="Content\assets\vendor\animate.css\animate.compat.css" />
     <Content Include="Content\assets\vendor\animate.css\animate.css" />
@@ -466,7 +472,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_OriginalLayout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -547,6 +552,8 @@
     <Content Include="Views\UserDetails\Edit.cshtml" />
     <Content Include="Views\UserDetails\Index.cshtml" />
     <Content Include="Views\UserDetails\Details.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\EmailConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
