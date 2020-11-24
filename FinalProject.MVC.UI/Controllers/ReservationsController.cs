@@ -36,6 +36,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Reservations/Details/5
+        [Authorize(Roles ="Admin, Employee, Client")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -47,7 +48,22 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            return View(reservations);
+
+            if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+            {
+                return View(reservations);
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                var reservation = from r in db.Reservations
+                                   where r.Homes.OwnderId == currentUserID
+                                   select r;
+
+                return View(reservation.FirstOrDefault());
+            }
+
+
         }
 
         // GET: Reservations/Create
@@ -58,6 +74,11 @@ namespace FinalProject.MVC.UI.Controllers
                 ViewBag.HomeId = new SelectList(db.Homes, "HomeId", "HomeName");
                 ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
                 ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType");
+                return View();
+            }
+            else if (User.IsInRole("Employee")) // this might be redundant I don't think they can even make it here....
+            {
+                ViewBag.FailureMessage = "Whoops! Please contact your admin for this function";
                 return View();
             }
             else
@@ -83,18 +104,13 @@ namespace FinalProject.MVC.UI.Controllers
             ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType", reservations.ServiceId);
             if (ModelState.IsValid)
             {
-                //logic to figure out the location -pull it from the database to find its limit
-                //TODO figure out how to do this logic.....
                 int location = reservations.LocationId;
                 int home = reservations.HomeId;
                 DateTime date = reservations.ReservationDate;
-                //var currentResos = db.Reservations.GroupBy(x => x.ReservationId).Where(y => y.Count() <= 5);
-
                 var currentResos = from x in db.Reservations
                                    where x.LocationId == location && x.ReservationDate == date
                                    select x;
                 var resoNbr = currentResos.Count();
-
                 var resoLimit = (from x in db.Locations
                                 where x.LocationId == location
                                 select x.ReservationLimit).FirstOrDefault();
@@ -111,14 +127,12 @@ namespace FinalProject.MVC.UI.Controllers
                     ViewBag.Message = $"Whoops! Sorry......... that location is booked for {date}, please select a different office location or date for your cleaning service.";
                     return View("Create");
                 }
-
             }
-
-
             return View(reservations);
         }
 
         // GET: Reservations/Edit/5
+        [Authorize(Roles = "Admin, Client")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -130,10 +144,23 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HomeId = new SelectList(db.Homes, "HomeId", "HomeName", reservations.HomeId);
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", reservations.LocationId);
-            ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType", reservations.ServiceId);
-            return View(reservations);
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.HomeId = new SelectList(db.Homes, "HomeId", "HomeName", reservations.HomeId);
+                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", reservations.LocationId);
+                ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType", reservations.ServiceId);
+                return View(reservations);
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                ViewBag.HomeId = new SelectList(db.Homes.Where(h => h.OwnderId == currentUserID), "HomeId", "HomeName", reservations.HomeId);
+                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", reservations.LocationId);
+                ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType", reservations.ServiceId);
+                return View(reservations);
+            }
+
+
         }
 
         // POST: Reservations/Edit/5
@@ -156,6 +183,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Reservations/Delete/5
+        [Authorize(Roles = "Admin, Client")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -167,10 +195,23 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            return View(reservations);
+            if (User.IsInRole("Admin"))
+            {
+                return View(reservations);
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                var reservation = from r in db.Reservations
+                                  where r.Homes.OwnderId == currentUserID
+                                  select r;
+
+                return View(reservation.FirstOrDefault());
+            }
         }
 
         // POST: Reservations/Delete/5
+        [Authorize(Roles = "Admin, Client")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

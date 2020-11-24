@@ -48,7 +48,18 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            return View(homes);
+            if (User.IsInRole("Admin"))
+            {
+                return View(homes);
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                var home = from h in db.Homes
+                           where h.OwnderId == currentUserID
+                           select h;
+                return View(home.FirstOrDefault());
+            }
         }
 
         // GET: Homes/Create
@@ -119,6 +130,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Homes/Edit/5
+        [Authorize(Roles = "Admin, Client")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -130,9 +142,18 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            string currentUserID = User.Identity.GetUserId();
-            ViewBag.OwnderId = new SelectList(db.UserDetails.Where(x => x.UserId == currentUserID), "UserId", "CompanyName");
-            return View(homes);
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.OwnderId = new SelectList(db.UserDetails, "UserId", "FullName");
+                return View(homes);
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                ViewBag.OwnderId = new SelectList(db.UserDetails.Where(x => x.UserId == currentUserID), "UserId", "FullName");
+                return View(homes);
+            }
+
         }
 
         // POST: Homes/Edit/5
