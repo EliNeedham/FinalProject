@@ -1,7 +1,7 @@
 ﻿@model FinalProject.DATA.EF.Reservations
 
 @{
-    ViewBag.Title = "Reservations | Create";
+    ViewBag.Title = "Make a Reservation";
 }
 
 <!-- ======= Breadcrumbs ======= -->
@@ -10,6 +10,7 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <h2>@ViewBag.Title</h2>
+
             <ol>
                 <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started btn-background" })</li>
             </ol>
@@ -17,14 +18,16 @@
     </div>
 </section><!-- End Breadcrumbs -->
 
+@if (ViewBag.Message != null)
+{
+    <h2>@ViewBag.Message</h2>
+}
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Reservations</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.HomeId, "Home", htmlAttributes: new { @class = "control-label col-md-2" })

@@ -103,6 +103,7 @@ namespace FinalProject.DATA.EF//.Metadata
 
         [Display(Name = "Daily Reservation Limit")]
         [Required(ErrorMessage = " * Please enter a limit.")]
+        [Range(0, double.MaxValue, ErrorMessage = "* The limit must be 0 or larger")]
         public byte ReservationLimit { get; set; }
     }
 

@@ -75,9 +75,8 @@ namespace FinalProject.MVC.UI.Models
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 
-        //TODO image upload utility
-        //[Display(Name = "Profile Picture")]
-        //public string UserPhoto { get; set; }
+        [Display(Name = "Profile Picture")]
+        public string UserPhoto { get; set; }
 
         [Required]
         [EmailAddress]

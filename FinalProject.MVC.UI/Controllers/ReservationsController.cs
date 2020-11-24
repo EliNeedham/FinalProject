@@ -18,8 +18,21 @@ namespace FinalProject.MVC.UI.Controllers
         // GET: Reservations
         public ActionResult Index()
         {
-            var reservations = db.Reservations.Include(r => r.Homes).Include(r => r.Locations).Include(r => r.Services);
-            return View(reservations.ToList());
+            if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+            {
+                var reservations = db.Reservations.Include(r => r.Homes).Include(r => r.Locations).Include(r => r.Services);
+                return View(reservations.ToList());
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                var reservations = from r in db.Reservations
+                                   where r.Homes.OwnderId == currentUserID
+                                   select r;
+                //var reservations = db.Reservations.Include(r => r.Homes).Include(r => r.Locations).Include(r => r.Services);
+                return View(reservations.ToList());
+            }
+
         }
 
         // GET: Reservations/Details/5
@@ -40,11 +53,22 @@ namespace FinalProject.MVC.UI.Controllers
         // GET: Reservations/Create
         public ActionResult Create()
         {
-            string currentUserID = User.Identity.GetUserId();
-            ViewBag.HomeId = new SelectList(db.Homes.Where(x => x.OwnderId == currentUserID), "HomeId", "HomeName");
-            ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
-            ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType");
-            return View();
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.HomeId = new SelectList(db.Homes, "HomeId", "HomeName");
+                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
+                ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType");
+                return View();
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                ViewBag.HomeId = new SelectList(db.Homes.Where(x => x.OwnderId == currentUserID), "HomeId", "HomeName");
+                ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName");
+                ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType");
+                return View();
+            }
+
         }
 
         // POST: Reservations/Create
@@ -54,28 +78,43 @@ namespace FinalProject.MVC.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ReservationId,HomeId,LocationId,ReservationDate,ServiceId")] Reservations reservations)
         {
-
-            if (ModelState.IsValid)
-            {
-                //logic to figure out the location - pull it from the database to find its limit
-                //TODO figure out how to do this logic.....
-                //int location = reservations.LocationId;
-                //int home = reservations.HomeId;
-                //DateTime date = reservations.ReservationDate;
-                //int currentResos = db.Locations.Where(location => )
-
-                //if ()
-                //{
-
-                //}
-                db.Reservations.Add(reservations);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
             ViewBag.HomeId = new SelectList(db.Homes, "HomeId", "HomeName", reservations.HomeId);
             ViewBag.LocationId = new SelectList(db.Locations, "LocationId", "LocationName", reservations.LocationId);
             ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType", reservations.ServiceId);
+            if (ModelState.IsValid)
+            {
+                //logic to figure out the location -pull it from the database to find its limit
+                //TODO figure out how to do this logic.....
+                int location = reservations.LocationId;
+                int home = reservations.HomeId;
+                DateTime date = reservations.ReservationDate;
+                //var currentResos = db.Reservations.GroupBy(x => x.ReservationId).Where(y => y.Count() <= 5);
+
+                var currentResos = from x in db.Reservations
+                                   where x.LocationId == location && x.ReservationDate == date
+                                   select x;
+                var resoNbr = currentResos.Count();
+
+                var resoLimit = (from x in db.Locations
+                                where x.LocationId == location
+                                select x.ReservationLimit).FirstOrDefault();
+                //linq always wants to return a collection - first or default lets you return just one - looking for a single record
+
+                if (resoNbr < resoLimit || User.IsInRole("Admin"))
+                {
+                    db.Reservations.Add(reservations);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = $"Whoops! Sorry......... that location is booked for {date}, please select a different office location or date for your cleaning service.";
+                    return View("Create");
+                }
+
+            }
+
+
             return View(reservations);
         }
 

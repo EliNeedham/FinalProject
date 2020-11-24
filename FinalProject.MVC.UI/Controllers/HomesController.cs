@@ -178,7 +178,7 @@ namespace FinalProject.MVC.UI.Controllers
                             #endregion
                             if (homes.HomePhoto != null && homes.HomePhoto != "noimage.png")
                             {
-                                string path = Server.MapPath("~/Content/imgstore/books/");
+                                string path = Server.MapPath("~/Content/assets/img/Uploads/");
                                 UploadUtility.Delete(path, homes.HomePhoto);
                             }
                         }
