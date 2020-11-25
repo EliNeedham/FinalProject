@@ -190,6 +190,7 @@
     <Compile Include="Utilities\UploadUtility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\custom.css" />
     <Content Include="Content\assets\css\style.css" />
     <Content Include="Content\assets\img\about.jpg" />
     <Content Include="Content\assets\img\apple-touch-icon.png" />

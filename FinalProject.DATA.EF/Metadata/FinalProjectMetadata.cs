@@ -33,7 +33,7 @@ namespace FinalProject.DATA.EF//.Metadata
     [MetadataType(typeof(UserDetailsMetadata))]
     public partial class UserDetails
     {
-        [Display(Name = "Name")]
+        [Display(Name = "Owner")]
         public string FullName { get { return FirstName + " " + LastName; } }
     }
 
@@ -145,7 +145,8 @@ namespace FinalProject.DATA.EF//.Metadata
         [StringLength(300, ErrorMessage = " * Please do not exceed 300 characters.")]
         public string SpecialNotes { get; set; }
 
-        //public bool IsActive { get; set; }
+        [Display(Name = "Active")]
+        public bool IsActive { get; set; }
 
         [Display(Name = "Date Added")]
         [Required(ErrorMessage = " *Please enter a date for your reservation.")]

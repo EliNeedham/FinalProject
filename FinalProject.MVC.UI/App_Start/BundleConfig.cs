@@ -43,8 +43,10 @@ namespace FinalProject.MVC.UI
                 "~/Content/assets/vendor/owl.carousel/assets/owl.carousel.min.css",
                 "~/Content/assets/vendor/aos/aos.css",
                 "~/Content/assets/vendor/remixicon/remixicon.css",
-                "~/Content/assets/css/style.css"
+                "~/Content/assets/css/style.css",
+                "~/Content/assets/css/custom.css"
                 ));
+
         }
     }
 }

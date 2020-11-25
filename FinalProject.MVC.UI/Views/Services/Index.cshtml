@@ -20,9 +20,10 @@
 <!-- ======= Services Section ======= -->
 <section id="services" class="services section-bg">
     <div class="container" data-aos="fade-up">
-        @foreach (var item in Model)
-        {
-            <div class="row">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                     <div class="icon-box iconbox-blue">
                         <div class="icon">
@@ -34,13 +35,15 @@
                         <h4>@Html.DisplayFor(modelItem => item.ServiceType)</h4>
                         <p>@Html.DisplayFor(modelItem => item.Description)</p>
                         <h4>@Html.DisplayFor(modelItem => item.Price)</h4>
+                        <p>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ServiceId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ServiceId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ServiceId })
+                        </p>
                     </div>
                 </div>
-
-            </div>
-        }
-
-
+            }
+        </div>
     </div>
 </section><!-- End Services Section -->
 

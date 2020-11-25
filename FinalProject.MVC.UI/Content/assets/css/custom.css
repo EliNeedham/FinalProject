@@ -1,0 +1,13 @@
+﻿body {
+}
+
+/*added this to override the width and height so that the images in the HOMES turn out well*/
+
+#override {
+    width: auto;
+    height: auto;
+}
+
+.services .icon-box {
+    margin-bottom: 15px;
+}
