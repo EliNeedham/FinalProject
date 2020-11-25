@@ -20,7 +20,17 @@ namespace FinalProject.MVC.UI.Controllers
         // GET: UserDetails
         public ActionResult Index()
         {
-            return View(db.UserDetails.ToList());
+            if (User.IsInRole("Admin"))
+            {
+                return View(db.UserDetails.ToList());
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                var details = db.UserDetails.Where(x => x.UserId == currentUserID);
+                    return View(details);
+            }
+
         }
 
         // GET: UserDetails/Details/5

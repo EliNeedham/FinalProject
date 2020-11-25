@@ -60,25 +60,39 @@
                                 </li>*@
                         </ul>
                     </li>
-                    <li class="drop-down">
-                        <a href="#">Admin</a>
-                        <ul>
-                            <li><a href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a></li>
-                            <li><a href="@Url.Action("Index", "UsersAdmin")">Users Admin</a></li>
-                            <li><a href="@Url.Action("Index", "UserDetails")">All User Details</a></li>
-                            <li><a href="@Url.Action("Index", "Homes")">Homes</a></li>
-                            <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
-                        </ul>
-                    </li>
-                    <li class="drop-down">
-                        <a href="#">My Account</a>
-                        <ul>
-                            <li><a href="@Url.Action("Index", "UserDetails")">Personal Details</a></li>
-                            <li><a href="@Url.Action("Index", "UserDetails")">Client Details</a></li>
-                            <li><a href="@Url.Action("Index", "Homes")">Homes</a></li>
-                            <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
-                        </ul>
-                    </li>
+                    @if (User.IsInRole("Admin, Employee"))
+                    {
+                        <li class="drop-down">
+                            <a href="#">Admin | Staff</a>
+                            <ul>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li><a href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a></li>
+                                    <li><a href="@Url.Action("Index", "UsersAdmin")">Users Admin</a></li>
+                                    <li><a href="@Url.Action("Index", "UserDetails")">All User Details</a></li>                                   
+                                 }
+                                <li><a href="@Url.Action("Index", "Homes")">Homes</a></li>
+                                <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
+                                <li><a href="@Url.Action("Index", "Services")">Services</a></li>
+                                <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Client"))
+                    {
+                        <li class="drop-down">
+                            <a href="#">My Account</a>
+                            <ul>
+                                <li><a href="@Url.Action("Index", "UserDetails")">Personal Details</a></li>
+                                <li><a href="@Url.Action("Index", "UserDetails")">Client Details</a></li>
+                                <li><a href="@Url.Action("Index", "Homes")">Homes</a></li>
+                                <li><a href="@Url.Action("Index", "Reservations")">Reservations</a></li>
+                                <li><a href="@Url.Action("Index", "Services")">Services</a></li>
+                                <li><a href="@Url.Action("Index", "Locations")">Locations</a></li>
+                            </ul>
+                        </li>
+                    }
+
                     <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
                     <li>@Html.Partial("_LoginPartial")</li>
 
