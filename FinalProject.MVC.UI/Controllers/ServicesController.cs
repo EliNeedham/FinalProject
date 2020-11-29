@@ -21,6 +21,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Services/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +37,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Services/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace FinalProject.MVC.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ServiceId,ServiceType,Price,Description")] Services services)
         {
             if (ModelState.IsValid)
@@ -59,6 +62,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Services/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +82,7 @@ namespace FinalProject.MVC.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ServiceId,ServiceType,Price,Description")] Services services)
         {
             if (ModelState.IsValid)
@@ -90,6 +95,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Services/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +111,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // POST: Services/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

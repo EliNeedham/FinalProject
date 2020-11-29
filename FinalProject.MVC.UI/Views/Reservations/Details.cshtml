@@ -17,44 +17,46 @@
     </div>
 </section><!-- End Breadcrumbs -->
 
-<div>
-    <h4>Reservations</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ReservationDate)
-        </dt>
+<section>
+    <div class="container">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ReservationDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ReservationDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.ReservationDate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Homes.HomeName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Homes.HomeName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Homes.HomeName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Homes.HomeName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Locations.LocationName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Locations.LocationName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Locations.LocationName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Locations.LocationName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Services.ServiceType)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Services.ServiceType)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Services.ServiceType)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Services.ServiceType)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ReservationId }, new { @class = "btn-get-started btn-background" })
-</p>
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ReservationId }, new { @class = "btn-get-started btn-background" })
+        </p>
+    </div>
+</section>

@@ -21,44 +21,52 @@
     </div>
 </section><!-- End Breadcrumbs -->
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ReservationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Homes.HomeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Locations.LocationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Services.ServiceType)
-        </th>
-        <th></th>
-    </tr>
+<section>
+    <div class="container">
+        <table id="table_id" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ReservationDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Homes.HomeName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Locations.LocationName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Services.ServiceType)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Homes.HomeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Locations.LocationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Services.ServiceType)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ReservationId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
-            </td>
-        </tr>
-    }
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReservationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Homes.HomeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Locations.LocationName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Services.ServiceType)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ReservationId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
+                        </td>
+                    </tr>
+                }
+            </tbody>
 
-</table>
+        </table>
+    </div>
+</section>
