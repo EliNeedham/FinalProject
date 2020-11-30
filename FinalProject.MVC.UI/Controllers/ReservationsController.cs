@@ -25,9 +25,12 @@ namespace FinalProject.MVC.UI.Controllers
             }
             else
             {
+                DateTime now = DateTime.Now.Date;
                 string currentUserID = User.Identity.GetUserId();
                 var reservations = from r in db.Reservations
                                    where r.Homes.OwnderId == currentUserID
+                                   && 
+                                   r.ReservationDate >= now
                                    select r;
                 //var reservations = db.Reservations.Include(r => r.Homes).Include(r => r.Locations).Include(r => r.Services);
                 return View(reservations.ToList());

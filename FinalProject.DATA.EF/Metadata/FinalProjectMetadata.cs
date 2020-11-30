@@ -156,4 +156,12 @@ namespace FinalProject.DATA.EF//.Metadata
 
     [MetadataType(typeof(HomesMetadata))]
     public partial class Homes { }
+
+    public class AspNetUsersMetadata
+    {
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+    }
+    [MetadataType(typeof(AspNetUsersMetadata))]
+    public partial class AspNetUsers { }
 }

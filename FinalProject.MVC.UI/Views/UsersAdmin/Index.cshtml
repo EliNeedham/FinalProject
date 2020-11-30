@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<FinalProject.MVC.UI.Models.ApplicationUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Users Admin";
 }
 
 <!-- ======= Breadcrumbs ======= -->
@@ -17,28 +17,38 @@
     </div>
 </section><!-- End Breadcrumbs -->
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
+<section>
+    <div class="container">
+        <table class="table">
+            <tr>
+                <th>
+                    User Name
+                </th>
+                @*<th>
+                    Role
+                </th>*@
+                <th>
 
-        </th>
-    </tr>
+                </th>
+            </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.ViewBag.RoleNames)
+                    </td>*@
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</section>

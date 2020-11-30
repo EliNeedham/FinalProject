@@ -75,9 +75,6 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            //TODO filter by who is logged in.
-            //string currentUserID = User.Identity.GetUserId();
-            //ViewBag. = new SelectList(db.UserDetails.Where(x => x.UserId == currentUserID), "UserId", "CompanyName");
             return View(userDetails);
         }
 

@@ -33,37 +33,50 @@
                         @Html.DisplayNameFor(model => model.Homes.HomeName)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.Homes.UserDetails.FullName)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Locations.LocationName)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Services.ServiceType)
                     </th>
-                    <th></th>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Client"))
+                    {
+                        <th></th>
+                    }
                 </tr>
             </thead>
 
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ReservationDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Homes.HomeName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Locations.LocationName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Services.ServiceType)
-                        </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReservationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Homes.HomeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Homes.UserDetails.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Locations.LocationName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Services.ServiceType)
+                    </td>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Client"))
+                    {
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.ReservationId }) |
                             @Html.ActionLink("Details", "Details", new { id = item.ReservationId }) |
                             @Html.ActionLink("Delete", "Delete", new { id = item.ReservationId })
                         </td>
-                    </tr>
+                    }
+
+                </tr>
                 }
             </tbody>
 

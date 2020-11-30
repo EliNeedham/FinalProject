@@ -9,6 +9,7 @@
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <link href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" rel="stylesheet" />
 
     <!-- Favicons -->
     <link href="~/Content/assets/img/favicon.png" rel="icon">
@@ -130,19 +131,19 @@
             </div>
         </div>
         @*<div class="container d-md-flex py-4">*@
-            <div class="mr-md-auto text-center">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>Elizabeth Needham</span></strong>. All Rights Reserved
-                </div>
-                <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/company-free-html-bootstrap-template/ -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> ||
-                    Adapted by Elizabeth Needham
-                </div>
+        <div class="mr-md-auto text-center">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Elizabeth Needham</span></strong>. All Rights Reserved
             </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/company-free-html-bootstrap-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> ||
+                Adapted by Elizabeth Needham
+            </div>
+        </div>
         @*</div>*@
     </footer><!-- End Footer -->
 
@@ -151,6 +152,7 @@
     @Scripts.Render("~/bundles/jquery")
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
     <script src="~/Content/assets/js/Custom.js"></script>
 
     @RenderSection("scripts", required: false)

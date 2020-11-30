@@ -1,7 +1,7 @@
 ﻿@model FinalProject.DATA.EF.Services
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Services | Edit";
 }
 
 <!-- ======= Breadcrumbs ======= -->
@@ -23,8 +23,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Services</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ServiceId)
 
@@ -53,7 +51,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn-get-started btn-background" />
             </div>
         </div>
     </div>

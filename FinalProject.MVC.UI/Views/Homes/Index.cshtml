@@ -32,12 +32,14 @@
                         </div>
                         <div class="text">
                             <h2>@Html.DisplayFor(model => item.HomeName)</h2>
-                            <p>@Html.DisplayFor(model => item.Address)</p>
+                            @*<p>@Html.DisplayFor(model => item.Address)</p>*@
                             <p>
+                                @Html.DisplayFor(model => item.Address)
                                 @Html.DisplayFor(model => item.City)
                                 @Html.DisplayFor(model => item.State)
                             </p>
-                            <p>@Html.DisplayFor(model => item.ZipCode)</p>
+                            @*<p>@Html.DisplayFor(model => item.ZipCode)</p>*@
+                            <p><strong>Notes</strong></p>
                             <p>@Html.DisplayFor(model => item.SpecialNotes)</p>
                             @if (User.IsInRole("Admin") || User.IsInRole("Employee"))
                             {
@@ -48,7 +50,7 @@
                             }
                             <p><strong>@Html.DisplayNameFor(model => model.DateAdded)</strong></p>
                             <p>@Html.DisplayFor(model => item.DateAdded)</p>
-                            <h5>@Html.DisplayNameFor(model => model.UserDetails.FullName)</h5>
+                            <p><strong>@Html.DisplayNameFor(model => model.UserDetails.FullName)</strong></p>
                             <h5>@Html.DisplayFor(modelItem => item.UserDetails.FullName)</h5>
                                 <p>
                                     @Html.ActionLink("Edit", "Edit", new { id = item.HomeId }) |

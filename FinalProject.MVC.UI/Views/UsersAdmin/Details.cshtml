@@ -1,45 +1,57 @@
 ﻿@model FinalProject.MVC.UI.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "User Admin | Details";
 }
 
-<h2>Details.</h2>
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
-</div>
-<h4>List of roles for this user</h4>
-@if (ViewBag.RoleNames.Count == 0)
-{
-    <hr />
-    <p>No roles found for this user.</p>
-}
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>@ViewBag.Title</h2>
+            <ol>
+                <li>@Html.ActionLink("Back to List", "Index", null, new { @class = "btn-get-started btn-background" })</li>
+            </ol>
+        </div>
+    </div>
+</section><!-- End Breadcrumbs -->
 
-<table class="table">
+<section>
+    <div class="container">
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    <strong>User Name</strong>
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+            </dl>
+        </div>
+        <h5>Roles this user currently has</h5>
+        @if (ViewBag.RoleNames.Count == 0)
+        {
+            <hr />
+            <p>No roles found for this user.</p>
+        }
 
-    @foreach (var item in ViewBag.RoleNames)
-    {
-        <tr>
-            <td>
-                @item
-            </td>
-        </tr>
-    }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <table class="table">
+
+            @foreach (var item in ViewBag.RoleNames)
+            {
+                <tr>
+                    <td>
+                        @item
+                    </td>
+                </tr>
+            }
+        </table>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn-get-started btn-background" })
+        </p>
+    </div>
+</section>
 
 
 
