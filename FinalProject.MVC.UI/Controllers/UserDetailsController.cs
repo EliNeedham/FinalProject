@@ -88,11 +88,10 @@ namespace FinalProject.MVC.UI.Controllers
             if (ModelState.IsValid)
             {
                 #region File Upload
-                string file = "noimage.png"; //for this to work in our image files there is a NoImage.png file
 
                 if (userPhoto != null)
                 {
-                    file = userPhoto.FileName;
+                    string file = userPhoto.FileName;
                     //we need to make sure they are actually uploading an appropriate file type
                     string ext = file.Substring(file.LastIndexOf('.'));
                     string[] goodExts = { ".jpeg", ".jpg", ".png", ".gif" };

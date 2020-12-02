@@ -48,7 +48,7 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("Employee"))
             {
                 return View(homes);
             }
@@ -65,9 +65,18 @@ namespace FinalProject.MVC.UI.Controllers
         // GET: Homes/Create
         public ActionResult Create()
         {
-            string currentUserID = User.Identity.GetUserId();
-            ViewBag.OwnderId = new SelectList(db.UserDetails.Where(x => x.UserId == currentUserID), "UserId", "FullName");
-            return View();
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.OwnderId = new SelectList(db.UserDetails, "UserId", "FullName");
+                return View();
+            }
+            else
+            {
+                string currentUserID = User.Identity.GetUserId();
+                ViewBag.OwnderId = new SelectList(db.UserDetails.Where(x => x.UserId == currentUserID), "UserId", "FullName");
+                return View();
+            }
+
         }
 
         // POST: Homes/Create
@@ -130,7 +139,6 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Homes/Edit/5
-        [Authorize(Roles = "Admin, Client")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -142,7 +150,7 @@ namespace FinalProject.MVC.UI.Controllers
             {
                 return HttpNotFound();
             }
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("Employee"))
             {
                 ViewBag.OwnderId = new SelectList(db.UserDetails, "UserId", "FullName");
                 return View(homes);
@@ -166,11 +174,11 @@ namespace FinalProject.MVC.UI.Controllers
             if (ModelState.IsValid)
             {
                 #region File Upload
-                string file = "noimage.png"; //for this to work in our image files there is a NoImage.png file
-
+                
                 if (homePhoto != null)
                 {
-                    file = homePhoto.FileName;
+                    
+                    string file = homePhoto.FileName;
                     //we need to make sure they are actually uploading an appropriate file type
                     string ext = file.Substring(file.LastIndexOf('.'));
                     string[] goodExts = { ".jpeg", ".jpg", ".png", ".gif" };
@@ -218,6 +226,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // GET: Homes/Delete/5
+        [Authorize(Roles = "Admin, Client")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -233,6 +242,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         // POST: Homes/Delete/5
+        [Authorize(Roles = "Admin, Client")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

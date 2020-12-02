@@ -18,9 +18,17 @@ namespace FinalProject.MVC.UI.Controllers
         // GET: Reservations
         public ActionResult Index()
         {
-            if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+            if (User.IsInRole("Admin"))
             {
                 var reservations = db.Reservations.Include(r => r.Homes).Include(r => r.Locations).Include(r => r.Services);
+                return View(reservations.ToList());
+            }
+            else if (User.IsInRole("Employee"))
+            {
+                DateTime now = DateTime.Now.Date;
+                var reservations = from r in db.Reservations
+                                   where r.ReservationDate >= now
+                                   select r;
                 return View(reservations.ToList());
             }
             else
@@ -32,7 +40,6 @@ namespace FinalProject.MVC.UI.Controllers
                                    && 
                                    r.ReservationDate >= now
                                    select r;
-                //var reservations = db.Reservations.Include(r => r.Homes).Include(r => r.Locations).Include(r => r.Services);
                 return View(reservations.ToList());
             }
 

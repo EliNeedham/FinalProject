@@ -10,9 +10,13 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <h2>@ViewBag.Title</h2>
-            <ol>
+            @if (User.IsInRole("Admin") || User.IsInRole("Client"))
+            {
+                <ol>
                     <li>@Html.ActionLink("Create New", "Create", null, new { @class = "btn-get-started btn-background" })</li>
-            </ol>
+                </ol>
+            }
+
         </div>
     </div>
 </section><!-- End Breadcrumbs -->
@@ -52,11 +56,23 @@
                             <p>@Html.DisplayFor(model => item.DateAdded)</p>
                             <p><strong>@Html.DisplayNameFor(model => model.UserDetails.FullName)</strong></p>
                             <h5>@Html.DisplayFor(modelItem => item.UserDetails.FullName)</h5>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Client"))
+                            {
                                 <p>
                                     @Html.ActionLink("Edit", "Edit", new { id = item.HomeId }) |
                                     @Html.ActionLink("Details", "Details", new { id = item.HomeId }) |
                                     @Html.ActionLink("Delete", "Delete", new { id = item.HomeId })
                                 </p>
+                            }
+                            else
+                            {
+                                <p>
+                                    @Html.ActionLink("Details", "Details", new { id = item.HomeId })
+                                </p>
+                            }
+                            
+
+
                         </div>
                     </div>
                 </div>
@@ -103,7 +119,11 @@
                     <th>
                         @Html.DisplayNameFor(model => model.UserDetails.CompanyName)
                     </th>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Client"))
+                    {
                     <th></th>
+                    }
+                    
                 </tr>
             </thead>
             <tbody>
@@ -143,11 +163,15 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.UserDetails.CompanyName)
                     </td>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Client"))
+                    {
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.HomeId }) |
                             @Html.ActionLink("Details", "Details", new { id = item.HomeId }) |
                             @Html.ActionLink("Delete", "Delete", new { id = item.HomeId })
                         </td>
+                    }
+
                 </tr>
                 }
             </tbody>
