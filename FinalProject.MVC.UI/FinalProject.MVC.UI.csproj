@@ -192,6 +192,7 @@
   <ItemGroup>
     <Content Include="Content\assets\css\custom.css" />
     <Content Include="Content\assets\css\style.css" />
+    <Content Include="Content\assets\img\apple-icon-180x180.png" />
     <Content Include="Content\assets\img\apple-touch-icon.png" />
     <Content Include="Content\assets\img\bubbles.jpg" />
     <Content Include="Content\assets\img\bubblesCrop.jpg" />
@@ -205,6 +206,7 @@
     <Content Include="Content\assets\img\clients\client-7.png" />
     <Content Include="Content\assets\img\clients\client-8.png" />
     <Content Include="Content\assets\img\ClothesPins.jpg" />
+    <Content Include="Content\assets\img\favicon-32x32.png" />
     <Content Include="Content\assets\img\favicon.png" />
     <Content Include="Content\assets\img\LemonS.png" />
     <Content Include="Content\assets\img\LemonSlice.jpg" />
