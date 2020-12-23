@@ -86,7 +86,7 @@ namespace FinalProject.MVC.UI.Controllers
                 ViewBag.ServiceId = new SelectList(db.Services, "ServiceId", "ServiceType");
                 return View();
             }
-            else if (User.IsInRole("Employee")) // this might be redundant I don't think they can even make it here....
+            else if (User.IsInRole("Employee")) 
             {
                 ViewBag.FailureMessage = "Whoops! Please contact your admin for this function";
                 return View();

@@ -15,7 +15,7 @@ namespace FinalProject.MVC.UI.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize] took this out bc anonymous user couldn't see it
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
